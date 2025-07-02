@@ -61,15 +61,16 @@ function App() {
     }
   };
 
-  const stopSending = async () => {
-    if (eventSource) {
-      await axios.get(`http://localhost:5000/stop-sending?senderEmail=${encodeURIComponent(senderEmail)}`);
-      eventSource.close();
-      setEventSource(null);
-      setLoading(false);
-      setMessages((prev) => [...prev, "Sending stopped by user."]);
-    }
-  };
+const stopSending = async () => {
+  if (eventSource) {
+    await axios.get(`https://aimailautoback.onrender.com/stop-sending?senderEmail=${encodeURIComponent(senderEmail)}`);
+    eventSource.close();
+    setEventSource(null);
+    setLoading(false);
+    setMessages((prev) => [...prev, "Sending stopped by user."]);
+  }
+};
+
 
   return (
     <div className="container">
