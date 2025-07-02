@@ -158,13 +158,21 @@ function App() {
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <h3>How to Get a Gmail App Password</h3>
             <ol>
-              <li>Go to <a href="https://myaccount.google.com/security" target="_blank" rel="noreferrer">Google Account Security</a></li>
+              <li>Go to your <a href="https://myaccount.google.com/security" target="_blank" rel="noreferrer">Google Account Security</a> settings</li>
               <li>Enable <strong>2-Step Verification</strong> if not already enabled</li>
-              <li>Scroll down to <strong>App passwords</strong></li>
-              <li>Select app: <em>Mail</em> and device: <em>Other (give a name)</em></li>
+              <li>Then visit: <br />
+                <a
+                  href="https://myaccount.google.com/apppasswords?rapt=AEjHL4OS9Fxq9t_WNu46JITpmHyF8JGefwka0DyQSgogsgxyo1eSbQsJC5meuXD97YD8e8yL8DVlu6t_xRKIWwzf26ZxR1L0Yc-XEEA0TRkH303IirD7Scs"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  👉 Generate App Password
+                </a>
+              </li>
+              <li>Select App: <em>Mail</em> and Device: <em>Other</em>, give any name</li>
               <li>Click <strong>Generate</strong></li>
-              <li>Copy the 16-character password shown and paste it here</li>
-              <li><strong>Note:</strong> This is required for sending emails via Gmail securely</li>
+              <li>Copy the 16-digit password shown and paste it here in the password field</li>
+              <li><strong>Note:</strong> This is required for Gmail to allow automated sending</li>
             </ol>
             <button onClick={() => setShowGuide(false)} className="close-btn">Close</button>
           </div>
