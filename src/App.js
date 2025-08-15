@@ -110,6 +110,8 @@ function App() {
         />
         <datalist id="job-titles">
           <option value="Software Engineer" />
+          <option value="Software Developer" />
+          <option value="Ai Engineer" />
           <option value="Frontend Developer" />
           <option value="Backend Developer" />
           <option value="Full Stack Developer" />
