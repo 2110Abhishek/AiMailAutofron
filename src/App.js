@@ -42,9 +42,9 @@ function App() {
     formData.append('position', position);
 
     try {
-      await axios.post('http://localhost:5000/upload', formData);
+      await axios.post('https://aimailautoback.onrender.com/upload', formData);
 
-      const es = new EventSource(`http://localhost:5000/send-emails?senderEmail=${encodeURIComponent(senderEmail)}`);
+      const es = new EventSource(`https://aimailautoback.onrender.com/send-emails?senderEmail=${encodeURIComponent(senderEmail)}`);
       setEventSource(es);
 
       es.onmessage = (e) => {
@@ -64,7 +64,7 @@ function App() {
  const stopSending = async () => {
   if (eventSource) {
     try {
-      await axios.get(`http://localhost:5000/stop-sending?senderEmail=${encodeURIComponent(senderEmail)}`);
+      await axios.get(`https://aimailautoback.onrender.com/stop-sending?senderEmail=${encodeURIComponent(senderEmail)}`);
       eventSource.close();
       setEventSource(null);
       setLoading(false);
