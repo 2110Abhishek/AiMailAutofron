@@ -14,6 +14,10 @@ function App() {
   const [eventSource, setEventSource] = useState(null);
   const [showGuide, setShowGuide] = useState(false);
 
+  const baseURL = process.env.NODE_ENV === 'development'
+    ? 'http://localhost:5000'
+    : 'https://aimailautoback.onrender.com';
+
   const isAppPassword = (password) => {
     const cleaned = password.replace(/\s/g, '');
     return cleaned.length === 16;
@@ -42,9 +46,9 @@ function App() {
     formData.append('position', position);
 
     try {
-      await axios.post('https://aimailautoback.onrender.com/upload', formData);
+      await axios.post(`${baseURL}/upload`, formData);
 
-      const es = new EventSource(`https://aimailautoback.onrender.com/send-emails?senderEmail=${encodeURIComponent(senderEmail)}`);
+      const es = new EventSource(`${baseURL}/send-emails?senderEmail=${encodeURIComponent(senderEmail)}`);
       setEventSource(es);
 
       es.onmessage = (e) => {
@@ -61,19 +65,19 @@ function App() {
     }
   };
 
- const stopSending = async () => {
-  if (eventSource) {
-    try {
-      await axios.get(`https://aimailautoback.onrender.com/stop-sending?senderEmail=${encodeURIComponent(senderEmail)}`);
-      eventSource.close();
-      setEventSource(null);
-      setLoading(false);
-      setMessages((prev) => [...prev, "Sending stopped by user."]);
-    } catch (error) {
-      alert("Failed to stop. Please try again.");
+  const stopSending = async () => {
+    if (eventSource) {
+      try {
+        await axios.get(`${baseURL}/stop-sending?senderEmail=${encodeURIComponent(senderEmail)}`);
+        eventSource.close();
+        setEventSource(null);
+        setLoading(false);
+        setMessages((prev) => [...prev, "Sending stopped by user."]);
+      } catch (error) {
+        alert("Failed to stop. Please try again.");
+      }
     }
-  }
-};
+  };
 
 
   return (
